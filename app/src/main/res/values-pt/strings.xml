@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Mesa News</string>
+    <string name="login">Login</string>
+    <string name="pass">Senha</string>
+    <string name="cadastro">Cadastre-se</string>
+    <string name="no_cadastro">Não é cadastrado?</string>
+    <string name="or">OU</string>
+    <string name="name">Nome</string>
+    <string name="confirm_pass">Digite a senha novamente</string>
+    <string name="email">Email</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="enter">Enter</string>
+    <string name="news">Noticias</string>
+    <string name="logout">Sair</string>
+    <string name="detail_title">Detalhes da Noticia</string>
+    <string name="date">Data de Nascimento</string>
+    <string name="favorites">Favoritos</string>
+    <string name="filter">Filtrar</string>
+    <string name="dont_match">Senhas diferentes</string>
+</resources>

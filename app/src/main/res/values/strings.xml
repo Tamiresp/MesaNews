@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Mesa News</string>
+    <string name="login">Login</string>
+    <string name="pass">Password</string>
+    <string name="cadastro">Register</string>
+    <string name="no_cadastro">Not registered?</string>
+    <string name="or">OR</string>
+    <string name="name">Name</string>
+    <string name="confirm_pass">Enter password again</string>
+    <string name="email">Email</string>
+    <string name="cadastrar">Register</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter">Enter</string>
+    <string name="news">News</string>
+    <string name="logout">Sign Out</string>
+    <string name="detail_title">News Detail</string>
+    <string name="date">Birthday</string>
+    <string name="favorites">Favorites</string>
+    <string name="filter">Filter</string>
+
+    <string name="dont_match">Different passwords</string>
+</resources>
