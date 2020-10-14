@@ -6,4 +6,5 @@ object Constants {
     const val TOKEN_SAVE = "token_save"
     const val URL = "url"
     const val DATE = "date"
+    const val TITLE = "title"
 }

@@ -20,4 +20,7 @@
     <string name="dont_match">Senhas diferentes</string>
     <string name="clean">Limpar</string>
     <string name="no_data">Sem Dados</string>
+    <string name="fields">Preencha todos os campos</string>
+    <string name="search">Pesquisar</string>
+    <string name="no_network">Sem internet</string>
 </resources>

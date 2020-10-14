@@ -34,8 +34,6 @@ class CadastroActivity : AppCompatActivity(), CadastroContract.View {
             if (verifyPassword()){
                 presenter.signUp(User(name_register.text.toString(), email_register.text.toString(),
                     pass_register.text.toString()))
-            } else {
-                Snackbar.make(findViewById(R.id.layout_register), R.string.dont_match, Snackbar.LENGTH_LONG).show()
             }
         }
 
@@ -54,15 +52,18 @@ class CadastroActivity : AppCompatActivity(), CadastroContract.View {
     }
 
     override fun verifyPassword(): Boolean {
-        return pass_register.text.toString() == pass_confirm.text.toString()
-    }
-
-    override fun onSuccessSignUp() {
-        Snackbar.make(findViewById(R.id.layout_register), "Cadastrado com sucesso", Snackbar.LENGTH_LONG).show()
-    }
-
-    override fun onFailSignUp(msg: String) {
-        Snackbar.make(findViewById(R.id.layout_register), msg, Snackbar.LENGTH_LONG).show()
+        return if(name_register.text.toString().isNotEmpty() && email_register.text.toString().isNotEmpty()
+            && pass_register.text.toString().isNotEmpty() && pass_confirm.text.toString().isNotEmpty()){
+            if (pass_register.text.toString() == pass_confirm.text.toString()) {
+                true
+            } else {
+                Snackbar.make(findViewById(R.id.layout_register), R.string.dont_match, Snackbar.LENGTH_LONG).show()
+                false
+            }
+        } else {
+            showDialog(getString(R.string.fields))
+            false
+        }
     }
 
     override fun showProgress() {

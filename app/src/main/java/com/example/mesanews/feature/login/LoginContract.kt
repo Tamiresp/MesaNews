@@ -13,6 +13,8 @@ interface LoginContract {
         fun hideProgress()
 
         fun showDialog(msg: String)
+
+        fun verifyFields(): Boolean
     }
 
     interface Presenter{

@@ -3,10 +3,15 @@ package com.example.mesanews.feature.home
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mesanews.R
 import com.example.mesanews.adapter.NewsAdapter
@@ -15,10 +20,13 @@ import com.example.mesanews.feature.filter.FilterActivity
 import com.example.mesanews.feature.login.LoginActivity
 import com.example.mesanews.util.Constants
 import com.example.mesanews.util.Constants.DATE
+import com.example.mesanews.util.Constants.TITLE
 import com.example.mesanews.util.Constants.TOKEN_SAVE
+import com.google.android.material.snackbar.Snackbar
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.item.*
 
 class HomeActivity : AppCompatActivity(), HomeContract.View {
     private val presenter = HomePresenter()
@@ -57,14 +65,34 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
 
         val intent = intent
         val date = intent.getStringExtra(DATE)
+        val title = intent.getStringExtra(TITLE)
 
-        val tokenSave = getPreferences()
-        if (date != "" && date != null)
-            tokenSave?.let { presenter.getDataForDate(adapter, it, date) }
-        else
-            tokenSave?.let { presenter.getData(adapter, it) }
+        if (isDeviceConnected()) {
+            val tokenSave = getPreferences()
+            if (date != "" && date != null)
+                tokenSave?.let { presenter.getDataForDate(adapter, it, date) }
+            else
+                tokenSave?.let { presenter.getData(adapter, it) }
+        } else {
+            Snackbar.make(
+                findViewById(R.id.home_layout), R.string.no_network, Snackbar.LENGTH_LONG).show()
+        }
+
+        if (title != "" && title != null){
+            val position: Int = findPosition(items, title)
+            if (position != -1) {
+                val list = ArrayList<News>()
+                list.add(items[position])
+                initRecyclerView()
+
+                recycler.scrollToPosition(position)
+            } else {
+                return
+            }
+        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_logout -> {
@@ -74,6 +102,9 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
             R.id.action_filter -> {
                 val intent = Intent(this, FilterActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.action_favorites -> {
+                getPreferences()?.let { presenter.getDataHighlights(adapter, it) }
             }
         }
         return true
@@ -104,4 +135,22 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
         txt_no_data.visibility = View.VISIBLE
     }
 
+    private fun findPosition(list: List<News>, name: String?): Int {
+        for (i in list.indices) {
+            if (list[i].title.toLowerCase() == name)
+                return i
+        }
+        return -1
+    }
+
+    private fun isDeviceConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.activeNetworkInfo
+        return netInfo != null && netInfo.isConnected
+    }
+
+    override fun setFavorite(){
+        if (btnFavorite != null)
+            btnFavorite.isChecked = true
+    }
 }

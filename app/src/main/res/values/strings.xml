@@ -21,4 +21,7 @@
     <string name="dont_match">Different passwords</string>
     <string name="clean">Clean</string>
     <string name="no_data">No data</string>
+    <string name="fields">Fill in all fields</string>
+    <string name="search">Search</string>
+    <string name="no_network">No network</string>
 </resources>

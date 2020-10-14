@@ -6,10 +6,6 @@ interface CadastroContract {
     interface View{
         fun verifyPassword(): Boolean
 
-        fun onSuccessSignUp()
-
-        fun onFailSignUp(msg: String)
-
         fun showProgress()
 
         fun hideProgress()

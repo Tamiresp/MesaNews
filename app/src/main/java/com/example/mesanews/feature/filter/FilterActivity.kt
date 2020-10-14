@@ -6,12 +6,11 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import com.example.mesanews.R
 import com.example.mesanews.feature.home.HomeActivity
 import com.example.mesanews.util.Constants.DATE
+import com.example.mesanews.util.Constants.TITLE
 import kotlinx.android.synthetic.main.activity_filter.*
-import java.util.*
 
 
 class FilterActivity : AppCompatActivity() {
@@ -35,6 +34,7 @@ class FilterActivity : AppCompatActivity() {
         button_filter.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra(DATE, date)
+            intent.putExtra(TITLE, news_search.text.toString())
             startActivity(intent)
         }
 

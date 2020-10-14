@@ -34,7 +34,10 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         }
 
         button_enter.setOnClickListener {
-            presenter.signIn(UserLogin(edit_login.text.toString(), edit_password.text.toString()))
+            if (verifyFields())
+                presenter.signIn(UserLogin(edit_login.text.toString(), edit_password.text.toString()))
+            else
+                showDialog(getString(R.string.fields))
         }
 
     }
@@ -74,5 +77,9 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         sp.edit{
             putString(Constants.TOKEN_SAVE, token)
         }
+    }
+
+    override fun verifyFields(): Boolean{
+        return edit_login.text.isNotEmpty() && edit_password.text.isNotEmpty()
     }
 }

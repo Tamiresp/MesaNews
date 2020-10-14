@@ -16,11 +16,15 @@ interface HomeContract {
         fun getPreferences(): String?
 
         fun setNoData()
+
+        fun setFavorite()
     }
 
     interface Presenter{
         fun getData(adapter: NewsAdapter, token: String)
 
         fun getDataForDate(adapter: NewsAdapter, token: String, date: String)
+
+        fun getDataHighlights(adapter: NewsAdapter, token: String)
     }
 }
