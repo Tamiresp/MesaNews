@@ -11,6 +11,8 @@ interface LoginContract {
         fun showProgress()
 
         fun hideProgress()
+
+        fun showDialog(msg: String)
     }
 
     interface Presenter{

@@ -18,4 +18,6 @@
     <string name="favorites">Favoritos</string>
     <string name="filter">Filtrar</string>
     <string name="dont_match">Senhas diferentes</string>
+    <string name="clean">Limpar</string>
+    <string name="no_data">Sem Dados</string>
 </resources>

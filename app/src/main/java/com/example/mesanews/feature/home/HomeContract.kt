@@ -12,9 +12,15 @@ interface HomeContract {
         fun showProgress()
 
         fun hideProgress()
+
+        fun getPreferences(): String?
+
+        fun setNoData()
     }
 
     interface Presenter{
         fun getData(adapter: NewsAdapter, token: String)
+
+        fun getDataForDate(adapter: NewsAdapter, token: String, date: String)
     }
 }

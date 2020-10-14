@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mesanews.R
 import com.example.mesanews.data.entity.User
@@ -76,5 +77,16 @@ class CadastroActivity : AppCompatActivity(), CadastroContract.View {
         val intent = Intent(this, HomeActivity::class.java)
         intent.putExtra(TOKEN, token)
         startActivity(intent)
+    }
+
+    override fun showDialog(msg: String){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(msg)
+        builder.setPositiveButton("Ok"){ _, _ ->
+            return@setPositiveButton
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }

@@ -1,28 +1,33 @@
 package com.example.mesanews.feature.home
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.mesanews.R
 import com.example.mesanews.adapter.NewsAdapter
-import com.example.mesanews.data.entity.AllResults
 import com.example.mesanews.data.entity.News
-import com.example.mesanews.feature.filter.FilterFragment
+import com.example.mesanews.feature.filter.FilterActivity
 import com.example.mesanews.feature.login.LoginActivity
-import com.example.mesanews.util.Constants.TOKEN
+import com.example.mesanews.util.Constants
+import com.example.mesanews.util.Constants.DATE
+import com.example.mesanews.util.Constants.TOKEN_SAVE
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 class HomeActivity : AppCompatActivity(), HomeContract.View {
     private val presenter = HomePresenter()
 
     private val items = ArrayList<News>()
+
+    private val sp: SharedPreferences by lazy {
+        getSharedPreferences(Constants.TOKEN_SAVE, Context.MODE_PRIVATE)
+    }
 
     private val adapter: NewsAdapter by lazy {
         NewsAdapter(items, this)
@@ -50,11 +55,14 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
 
         initRecyclerView()
 
-        val token = intent.getStringExtra(TOKEN)
+        val intent = intent
+        val date = intent.getStringExtra(DATE)
 
-        if (token != null) {
-            presenter.getData(adapter, token)
-        }
+        val tokenSave = getPreferences()
+        if (date != "" && date != null)
+            tokenSave?.let { presenter.getDataForDate(adapter, it, date) }
+        else
+            tokenSave?.let { presenter.getData(adapter, it) }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -64,6 +72,8 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
                 startActivity(intent)
             }
             R.id.action_filter -> {
+                val intent = Intent(this, FilterActivity::class.java)
+                startActivity(intent)
             }
         }
         return true
@@ -85,4 +95,13 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
     override fun hideProgress() {
         progressBarHome.visibility = View.GONE
     }
+
+    override fun getPreferences(): String? {
+        return sp.getString(TOKEN_SAVE, "")
+    }
+
+    override fun setNoData(){
+        txt_no_data.visibility = View.VISIBLE
+    }
+
 }

@@ -1,10 +1,7 @@
 package com.example.mesanews.feature.detail
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewAnimationUtils
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
@@ -34,4 +31,14 @@ class DetailActivity : AppCompatActivity(), DetailContract.View {
         val url = intent.getStringExtra(Constants.URL)
         webView.loadUrl(url)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return true
+    }
+
 }

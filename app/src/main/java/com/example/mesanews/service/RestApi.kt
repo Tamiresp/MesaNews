@@ -26,4 +26,8 @@ interface RestApi {
     @GET("/v1/client/news?")
     fun getNewsForDate(@Query("published_at") published_at: String,
                        @Header("Authorization") token: String) : Call<AllResults>
+
+    @Headers("Content-Type: application/json")
+    @GET("/v1/client/news/highlights")
+    fun getFavorites(@Header("Authorization") token: String)  : Call<AllResults>
 }

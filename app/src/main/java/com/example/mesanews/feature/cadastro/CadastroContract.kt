@@ -15,6 +15,8 @@ interface CadastroContract {
         fun hideProgress()
 
         fun goToHome(token: String)
+
+        fun showDialog(msg: String)
     }
 
     interface Presenter{

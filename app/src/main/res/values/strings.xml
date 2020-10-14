@@ -19,4 +19,6 @@
     <string name="filter">Filter</string>
 
     <string name="dont_match">Different passwords</string>
+    <string name="clean">Clean</string>
+    <string name="no_data">No data</string>
 </resources>

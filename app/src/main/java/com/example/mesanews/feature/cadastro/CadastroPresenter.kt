@@ -18,7 +18,12 @@ class CadastroPresenter: CadastroContract.Presenter {
             .doFinally{view.hideProgress() }
             .subscribe (
                 {token -> view.goToHome(token)},
-                {t: Throwable? ->  view.hideProgress()}
+                {t: Throwable? ->
+                    view.hideProgress()
+                    if (t != null) {
+                        view.showDialog(t.message.toString())
+                    }
+                }
             )
     }
 }
