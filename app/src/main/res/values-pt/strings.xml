@@ -23,4 +23,9 @@
     <string name="fields">Preencha todos os campos</string>
     <string name="search">Pesquisar</string>
     <string name="no_network">Sem internet</string>
+
+
+    <string name="facebook_app_id">297800690726297</string>
+    <string name="fb_login_protocol_scheme">fb297800690726297</string>
+
 </resources>

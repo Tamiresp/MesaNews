@@ -24,4 +24,9 @@
     <string name="fields">Fill in all fields</string>
     <string name="search">Search</string>
     <string name="no_network">No network</string>
+
+
+    <string name="facebook_app_id">989709324874422</string>
+    <string name="fb_login_protocol_scheme">fb297800690726297</string>
+
 </resources>

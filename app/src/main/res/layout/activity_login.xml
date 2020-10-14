@@ -93,38 +93,46 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/button_enter" />
 
-    <Button
-        android:id="@+id/button2"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button_facebook"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button"
-        android:backgroundTint="@color/colorBtn"
-        android:text="Button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+    />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/no_cadastro"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        android:layout_marginTop="40dp"
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="89dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="89dp"
-        android:background="@android:color/transparent"
-        android:text="@string/cadastrar"
-        android:textColor="#2196F3"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/login_button_facebook">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="2"
+            android:text="@string/no_cadastro" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="89dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="@string/cadastrar"
+            android:textColor="#2196F3" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
